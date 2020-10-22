@@ -1,4 +1,4 @@
-# <img src='./res/icon/trvekvlt_icon.jpg' card_color='#40DBB0' width='50' height='50' style='vertical-align:bottom'/>Trve Kvlt Black Metal Skill
+# <img src='./res/icon/trvekvlt_icon.png' card_color='#40DBB0' width='50' height='50' style='vertical-align:bottom'/>Trve Kvlt Black Metal Skill
 
 ![](./res/trvekvlt_logo.png)
 
@@ -7,6 +7,7 @@
 
 Extensive library of Black Metal music for mycroft
 
+![](gui.png)
 
 ## Installation Notes
 
