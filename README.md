@@ -26,7 +26,7 @@ this requires latest CPS refactor, not yet merged in core
 
 ## Credits 
 - JarbasAl
-- [AIIX ](https://github.com/AIIX/) - for GUI
+- [AIIX ](https://github.com/AIIX/) - GUI
 
 
 ## Category
