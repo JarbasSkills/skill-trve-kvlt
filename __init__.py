@@ -37,7 +37,7 @@ class BlackMetalSkill(MediaCollectionSkill):
 
         if self.voc_match(phrase,
                           "video") or media_type == CPSMatchType.VIDEO:
-            score += 0.05
+            score += 0.01
             match = CPSMatchLevel.GENERIC
 
         if self.voc_match(phrase,
@@ -58,7 +58,7 @@ class BlackMetalSkill(MediaCollectionSkill):
     def calc_final_score(self, phrase, base_score, match_level):
         score = base_score
         if self.voc_match(phrase, "black-metal"):
-            score += 0.5
+            score += 0.6
         return score
 
 
