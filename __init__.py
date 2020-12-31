@@ -1,5 +1,5 @@
-from ovos_utils.waiting_for_mycroft.common_play import CPSMatchType, CPSMatchLevel
-from ovos_utils.skills.templates.media_collection import MediaCollectionSkill
+from ovos_utils.skills.templates.video_collection import VideoCollectionSkill, \
+    CPSMatchLevel, CPSMatchType
 from mycroft.skills.core import intent_file_handler
 from mycroft.util.parse import fuzzy_match, match_one
 from pyvod import Collection, Media
@@ -9,7 +9,7 @@ from json_database import JsonStorageXDG
 import datetime
 
 
-class BlackMetalSkill(MediaCollectionSkill):
+class BlackMetalSkill(VideoCollectionSkill):
 
     def __init__(self):
         super().__init__("TRVEKVLT")
@@ -19,9 +19,9 @@ class BlackMetalSkill(MediaCollectionSkill):
                                 CPSMatchType.MUSIC]
 
         path = join(dirname(__file__), "res", "trveKvlt.jsondb")
-        logo = join(dirname(__file__), "res", "trvekvlt_logo.png")
+        self.default_image = join(dirname(__file__), "res", "trvekvlt_logo.png")
         # load video catalog
-        self.media_collection = Collection("TrveKvlt", logo=logo, db_path=path)
+        self.media_collection = Collection("TrveKvlt", logo=self.default_image, db_path=path)
 
     def get_intro_message(self):
         self.speak_dialog("intro")
