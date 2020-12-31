@@ -2,7 +2,7 @@ from ovos_utils.skills.templates.video_collection import VideoCollectionSkill, \
     CPSMatchLevel, CPSMatchType
 from mycroft.skills.core import intent_file_handler
 from pyvod import Collection
-from os.path import join, dirname
+from os.path import join, dirname, basename
 
 
 class BlackMetalSkill(VideoCollectionSkill):
