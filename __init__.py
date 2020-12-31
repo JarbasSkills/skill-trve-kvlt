@@ -1,12 +1,8 @@
 from ovos_utils.skills.templates.video_collection import VideoCollectionSkill, \
     CPSMatchLevel, CPSMatchType
 from mycroft.skills.core import intent_file_handler
-from mycroft.util.parse import fuzzy_match, match_one
-from pyvod import Collection, Media
-from os.path import join, dirname, basename
-import random
-from json_database import JsonStorageXDG
-import datetime
+from pyvod import Collection
+from os.path import join, dirname
 
 
 class BlackMetalSkill(VideoCollectionSkill):
