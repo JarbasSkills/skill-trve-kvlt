@@ -1,0 +1,22 @@
+{
+  "name": "Black Metal Music Catalog",
+  "skillname": "skill-trve-kvlt",
+  "authorname": "JarbasSkills",
+  "foldername": "",
+  "url": "https://github.com/JarbasSkills/skill-trve-kvlt",
+  "branch": "v0.1",
+  "desktopFile": false,
+  "warning": "",
+  "systemDeps": false,
+  "platforms": [
+    "arm",
+    "arm64",
+    "i386",
+    "x86_64",
+    "ia64"
+  ],
+  "examples": [
+    "open black metal menu",
+    "play black metal"
+  ]
+}

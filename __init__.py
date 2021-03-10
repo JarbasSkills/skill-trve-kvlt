@@ -11,10 +11,10 @@ class BlackMetalSkill(VideoCollectionSkill):
 
     def __init__(self):
         super().__init__("TRVEKVLT")
-        self.default_image = join(dirname(__file__), "ui", "bg.jpg")
+        self.default_image = join(dirname(__file__), "ui", "bg.png")
         self.skill_logo = join(dirname(__file__), "ui", "trvekvlt_icon.png")
         self.skill_icon = join(dirname(__file__), "ui", "trvekvlt_icon.png")
-        self.default_bg = join(dirname(__file__), "ui", "bg.jpg")
+        self.default_bg = join(dirname(__file__), "ui", "bg.png")
         self.message_namespace = basename(dirname(__file__)) + ".jarbasskills"
         self.supported_media = [CPSMatchType.GENERIC,
                                 CPSMatchType.VIDEO,
