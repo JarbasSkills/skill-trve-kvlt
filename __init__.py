@@ -17,12 +17,16 @@ class BlackMetalSkill(VideoCollectionSkill):
         self.default_bg = join(dirname(__file__), "ui", "bg.png")
         self.message_namespace = basename(dirname(__file__)) + ".jarbasskills"
         self.supported_media = [CPSMatchType.GENERIC,
+                                CPSMatchType.AUDIO,
                                 CPSMatchType.VIDEO,
                                 CPSMatchType.MUSIC]
-
+        self.playback_type = CPSPlayback.AUDIO
+        self.media_type = CPSMatchType.MUSIC
         path = join(dirname(__file__), "res", "trveKvlt.jsondb")
         # load video catalog
-        self.media_collection = Collection("TrveKvlt",
+        self.settings["match_description"] = True
+        self.settings["match_tags"] = True
+        self.media_collection = Collection("trveKvlt",
                                            logo=self.skill_logo, db_path=path)
 
     def get_intro_message(self):
@@ -48,7 +52,8 @@ class BlackMetalSkill(VideoCollectionSkill):
             score += 10
 
         if self.voc_match(phrase, "black-metal"):
-            score += 50
+            score += 70
+            self.CPS_extend_timeout(0.5)
 
         return score
 

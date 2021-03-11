@@ -9,6 +9,8 @@ Extensive library of Black Metal music for mycroft
 
 ![](gui.png)
 ![](gui.gif)
+![](gui2.png)
+![](gui3.png)
 
 ## Installation Notes
 
