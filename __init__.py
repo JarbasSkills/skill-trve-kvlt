@@ -1,10 +1,10 @@
-from mycroft.skills.core import intent_file_handler
-from pyvod import Collection, Media
 from os.path import join, dirname, basename
-from ovos_plugin_common_play.ocp import MediaType, PlaybackType, \
-    MatchConfidence
-from ovos_workshop.skills.video_collection import VideoCollectionSkill
+
 import biblioteca
+from mycroft.skills.core import intent_file_handler
+from ovos_plugin_common_play.ocp import MediaType
+from ovos_workshop.skills.video_collection import VideoCollectionSkill
+from pyvod import Collection
 
 
 class BlackMetalSkill(VideoCollectionSkill):
