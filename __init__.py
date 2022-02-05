@@ -2,9 +2,10 @@ import random
 from os.path import join, dirname
 
 from ovos_plugin_common_play.ocp import MediaType, PlaybackType
+from ovos_utils.log import LOG
 from ovos_workshop.skills.common_play import OVOSCommonPlaybackSkill, \
     ocp_search, ocp_featured_media
-from youtube_archivist import YoutubeArchivist
+from youtube_archivist import YoutubeMonitor
 
 
 class BlackMetalSkill(OVOSCommonPlaybackSkill):
@@ -16,18 +17,13 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
         self.supported_media = [MediaType.GENERIC,
                                 MediaType.AUDIO,
                                 MediaType.MUSIC]
-        self.archive = YoutubeArchivist(db_name="TrveKvlt")
+        self.archive = YoutubeMonitor(db_name="TrveKvlt", logger=LOG)
 
     def initialize(self):
-        if len(self.archive.db) == 0:
-            # no database, sync right away
-            self.schedule_event(self._scheduled_update, 5)
-
-    def _scheduled_update(self):
-        self.update_db()
-        self.schedule_event(self._scheduled_update, random.randint(3600, 12 * 3600))  # every 6 hours
-
-    def update_db(self):
+        bootstrap = f"https://raw.githubusercontent.com/OpenJarbas/streamindex/main/{self.archive.db.name}.json"
+        self.archive.bootstrap_from_url(bootstrap)
+        self.archive.setDaemon(True)
+        self.archive.start()
         urls = [
             "https://www.youtube.com/watch?v=kU0pOmzj70o",
             "https://www.youtube.com/playlist?list=PLykNNMVjCDfWTRkRauhAjPh0h3ddMJin0",
@@ -99,8 +95,7 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
             "https://www.youtube.com/c/bmpromotion/videos",
         ]
         for url in urls:
-            self.archive.archive(url)
-        self.archive.remove_unavailable()  # check if video is still available
+            self.archive.monitor(url)
 
     # matching
     def match_skill(self, phrase, media_type):
@@ -149,18 +144,18 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
     @ocp_featured_media()
     def featured_media(self, num_entries=250):
         return [
-            {
-                "match_confidence": 100,
-                "media_type": MediaType.MUSIC,
-                "uri": "youtube//" + entry["url"],
-                "playback": PlaybackType.AUDIO,
-                "image": entry["thumbnail"],
-                "length": entry.get("duration", 0) * 1000,
-                "bg_image": self.default_bg,
-                "skill_icon": self.skill_icon,
-                "title": entry["title"]
-            } for entry in self.archive.sorted_entries()
-        ][:num_entries]
+                   {
+                       "match_confidence": 100,
+                       "media_type": MediaType.MUSIC,
+                       "uri": "youtube//" + entry["url"],
+                       "playback": PlaybackType.AUDIO,
+                       "image": entry["thumbnail"],
+                       "length": entry.get("duration", 0) * 1000,
+                       "bg_image": self.default_bg,
+                       "skill_icon": self.skill_icon,
+                       "title": entry["title"]
+                   } for entry in self.archive.sorted_entries()
+               ][:num_entries]
 
 
 def create_skill():
