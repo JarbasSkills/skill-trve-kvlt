@@ -20,7 +20,7 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
         self.archive = YoutubeMonitor(db_name="TrveKvlt", logger=LOG)
 
     def initialize(self):
-        bootstrap = f"https://raw.githubusercontent.com/OpenJarbas/streamindex/main/{self.archive.db.name}.json"
+        bootstrap = f"https://github.com/JarbasSkills/skill-trve-kvly/raw/dev/bootstrap.json"
         self.archive.bootstrap_from_url(bootstrap)
         self.archive.setDaemon(True)
         self.archive.start()
