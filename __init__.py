@@ -22,8 +22,9 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
     def initialize(self):
         bootstrap = f"https://github.com/JarbasSkills/skill-trve-kvly/raw/dev/bootstrap.json"
         self.archive.bootstrap_from_url(bootstrap)
-        self.archive.setDaemon(True)
-        self.archive.start()
+        self.schedule_event(self._sync_db, random.randint(3600, 24 * 3600))
+
+    def _sync_db(self):
         urls = [
             "https://www.youtube.com/watch?v=kU0pOmzj70o",
             "https://www.youtube.com/playlist?list=PLykNNMVjCDfWTRkRauhAjPh0h3ddMJin0",
@@ -95,7 +96,8 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
             "https://www.youtube.com/c/bmpromotion/videos",
         ]
         for url in urls:
-            self.archive.monitor(url)
+            self.archive.parse_videos(url)
+        self.schedule_event(self._sync_db, random.randint(3600, 24*3600))
 
     # matching
     def match_skill(self, phrase, media_type):
