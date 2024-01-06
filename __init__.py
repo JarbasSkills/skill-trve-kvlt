@@ -95,12 +95,12 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
 
         if artist or song or album:
             # filter valid results
-            if album:
-                candidates = [video for video in candidates
-                              if album.lower() in video["title"].lower()]
-            elif artist:
+            if artist:
                 candidates = [video for video in candidates
                               if artist.lower() in video["title"].lower()]
+            elif album:
+                candidates = [video for video in candidates
+                              if album.lower() in video["title"].lower()]
             elif song:
                 candidates = [video for video in candidates
                               if song.lower() in video["title"].lower()]
