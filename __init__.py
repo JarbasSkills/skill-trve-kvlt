@@ -111,7 +111,7 @@ class BlackMetalSkill(OVOSCommonPlaybackSkill):
                     "author": artist or video["author"],
                     "album": album,
                     "match_confidence": min(100, base_score),
-                    "media_type": MediaType.AUDIOBOOK,
+                    "media_type": MediaType.MUSIC,
                     "uri": "youtube//" + video["url"],
                     "playback": PlaybackType.AUDIO,
                     "skill_icon": self.skill_icon,
