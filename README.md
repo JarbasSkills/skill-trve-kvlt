@@ -5,16 +5,13 @@
 
 ## About 
 
-Extensive library of Black Metal music for mycroft
+Extensive library of Black Metal music for OpenVoiceOS
 
 ![](gui.png)
 ![](gui.gif)
 ![](gui2.png)
 ![](gui3.png)
 
-## Installation Notes
-
-this requires [skill-better-playback-control](https://github.com/JarbasSkills/skill-better-playback-control), it will blacklist and replace the official mycroft skill
 
 ## Examples 
 
